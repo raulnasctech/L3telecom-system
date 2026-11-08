@@ -1,0 +1,41 @@
+schema: spec-driven
+
+context: |
+  Projeto: L3 Telecom System — ERP interno da L3 Telecom (infraestrutura e fibra óptica).
+  Documentação de base: docs/project-overview.md e docs/domain-model.md.
+
+  Stack:
+  - Frontend/app: Reflex (Python), venv em .venv
+  - Backend/banco/API: Xano (pasta xano/)
+  - Integração: API oficial do WhatsApp Business Platform (relatórios diários de obra)
+
+  Domínio:
+  - Módulos: autenticação, dashboard, administração, RH, obras, relatórios por WhatsApp (IA),
+    estoque, frotas, financeiro.
+  - Perfis: dono (tudo), coordenador (RH e obras), administrativo (telas administrativas e
+    lançamento de gastos), RH (somente RH). Financeiro visível apenas ao dono.
+  - Relatório diário: mensagem original imutável; IA nunca inventa dados; status
+    Completo / Incompleto / Necessita de revisão; correções com auditoria.
+
+  Convenções:
+  - Idioma da interface, textos e documentação: português do Brasil
+  - Identidade visual: preto, laranja/amarelo e branco
+  - Nunca apagar registros (usar flag ativo); senhas somente como hash
+  - Nunca versionar tokens/chaves; usar variáveis de ambiente
+  - Consultar a skill reflex-docs antes de escrever código Reflex
+
+rules:
+  proposal:
+    - Escrever em português do Brasil
+    - Informar quais perfis de acesso são afetados
+    - Indicar impacto no Xano (tabelas/endpoints) e no app Reflex
+  specs:
+    - Usar o formato Requirement + Scenario (Dado/Quando/Então)
+    - Descrever sempre a regra de permissão por perfil
+    - Referenciar as entidades de docs/domain-model.md
+  design:
+    - Justificar escolhas de modelagem no Xano e de estado no Reflex
+    - Incluir segurança (autenticação, autorização, dados sensíveis)
+  tasks:
+    - Dividir em tarefas pequenas, ordenadas por dependência
+    - Separar tarefas de backend (Xano) e frontend (Reflex)
